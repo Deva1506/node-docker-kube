@@ -6,16 +6,16 @@ metadata:
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: app
-  name: app
+    io.kompose.service: react-express-mysql_app
+  name: react-express-mysql_app
 spec:
-  replicas: 3
+  replicas: 1
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: app
+        io.kompose.service: react-express-mysql_app
     spec:
       containers:
       - env:
@@ -43,16 +43,13 @@ spec:
           value: "8080"
         - name: NODE_LOCAL_PORT
           value: "8080"
-        image: app
-        name: app
+        image: react-express-mysql_app
+        imagePullPolicy: IfNotPresent
+        name: react-express-mysql_app
         ports:
         - containerPort: 8080
         resources: {}
         stdin: true
         tty: true
-      initContainers:
-      - name: init-db
-        image: busybox
-        command: ['sh', '-c', 'until nc -z db:27017; do echo waiting for db; sleep 2; done;']
       restartPolicy: Always
 status: {}

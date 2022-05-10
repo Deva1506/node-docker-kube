@@ -6,8 +6,8 @@ metadata:
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: mysqldb
-  name: mysqldb
+    io.kompose.service: mysql
+  name: mysql
 spec:
   replicas: 1
   strategy:
@@ -16,7 +16,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: mysqldb
+        io.kompose.service: mysql
     spec:
       containers:
       - env:
@@ -41,7 +41,7 @@ spec:
         - name: NODE_LOCAL_PORT
           value: "8080"
         image: mysql:5.7
-        name: mysqldb
+        name: mysql
         ports:
         - containerPort: 3306
         resources: {}

@@ -6,13 +6,14 @@ metadata:
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: mysqldb
-  name: mysqldb
+    io.kompose.service: mysql
+  name: mysql
 spec:
   ports:
-  - port: 3307
+  - name: "3307"
+    port: 3307
     targetPort: 3306
   selector:
-    io.kompose.service: mysqldb
+    io.kompose.service: mysql
 status:
   loadBalancer: {}
