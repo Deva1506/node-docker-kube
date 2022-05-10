@@ -6,8 +6,8 @@ metadata:
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: react-express-mysql_app
-  name: react-express-mysql_app
+    io.kompose.service: app
+  name: app
 spec:
   replicas: 1
   strategy: {}
@@ -15,7 +15,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: react-express-mysql_app
+        io.kompose.service: app
     spec:
       containers:
       - env:
@@ -45,7 +45,7 @@ spec:
           value: "8080"
         image: react-express-mysql_app
         imagePullPolicy: IfNotPresent
-        name: react-express-mysql_app
+        name: app
         ports:
         - containerPort: 8080
         resources: {}
