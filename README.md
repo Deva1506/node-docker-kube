@@ -50,3 +50,5 @@ npm install
 ```
 node server.js
 ```
+
+kubectl create -f app-service.yaml,app-deployment.yaml,mysqldb-service.yaml,mysqldb-deployment.yaml,db-persistentvolumeclaim.yaml

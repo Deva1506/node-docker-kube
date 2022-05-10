@@ -1,0 +1,58 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose --file docker-compose-kube.yaml convert
+    kompose.version: 1.18.0 (06a2e56)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: app
+  name: app
+spec:
+  replicas: 3
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: app
+    spec:
+      containers:
+      - env:
+        - name: DB_HOST
+          value: mysqldb
+        - name: DB_NAME
+          value: test_db
+        - name: DB_PASSWORD
+          value: "123456"
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_USER
+          value: root
+        - name: MYSQLDB_DATABASE
+          value: test_db
+        - name: MYSQLDB_DOCKER_PORT
+          value: "3306"
+        - name: MYSQLDB_LOCAL_PORT
+          value: "3307"
+        - name: MYSQLDB_ROOT_PASSWORD
+          value: "123456"
+        - name: MYSQLDB_USER
+          value: root
+        - name: NODE_DOCKER_PORT
+          value: "8080"
+        - name: NODE_LOCAL_PORT
+          value: "8080"
+        image: app
+        name: app
+        ports:
+        - containerPort: 8080
+        resources: {}
+        stdin: true
+        tty: true
+      initContainers:
+      - name: init-db
+        image: busybox
+        command: ['sh', '-c', 'until nc -z db:27017; do echo waiting for db; sleep 2; done;']
+      restartPolicy: Always
+status: {}
